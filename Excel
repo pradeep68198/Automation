@@ -1,0 +1,25 @@
+	
+public static String[][] ExcelRead(String Filepath,int sheet) throws BiffException, IOException{
+		
+		String filename=Filepath;
+		File myexcel = new File(filename);
+		
+		Workbook objWork=Workbook.getWorkbook(myexcel);
+		Sheet objsheet = objWork.getSheet(sheet);
+		
+		int Cols = objsheet.getColumns();
+		int Rows = objsheet.getRows();
+		parameterarray = new String[Cols][Rows];
+		
+		for (int row=1;row<Rows;row++){
+			for (int col=0;col<Cols;col++){
+				//System.out.println("6");
+				Cell objcell=objsheet.getCell(col, row);
+				parameterarray[col][row]=objcell.getContents();
+				//System.out.println(parameterarray[col][row]);
+			}
+		}
+		
+		return parameterarray;
+		
+	}
